@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Special Gift For You ✨</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
+      --card-bg: #ffffff;
+      --accent-color: #ff6b81;
+      --text-main: #2f3542;
+      --text-muted: #747d8c;
+      --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    /* Photo Grid Section */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .polaroid {
+      background: var(--card-bg);
+      padding: 15px 15px 25px 15px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .polaroid:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .polaroid .caption {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Message Reveal Section */
+    .gift-box-section {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .gift-btn {
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(255, 107, 129, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .gift-btn:hover {
+      transform: scale(1.05);
+      background: #ff4757;
+    }
+
+    .letter {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.4s ease;
+      text-align: left;
+      line-height: 1.7;
+      font-size: 1.05rem;
+      color: #57606f;
+      background: #fafafa;
+      border-left: 4px solid var(--accent-color);
+      padding: 0 20px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .letter.open {
+      max-height: 500px;
+      opacity: 1;
+      padding: 20px;
+      margin-top: 25px;
+    }
+
+    .letter h3 {
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+
+    /* Confetti Canvas */
+    canvas#confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti"></canvas>
+
+  <div class="container">
+    <header>
+      <h1>A Little Something For You 💌</h1>
+      <p>Miles apart, but always close at heart.</p>
+    </header>
+
+    <!-- Polaroid Memories Gallery -->
+    <div class="gallery">
+      <div class="polaroid">
+        <img src="https://picsum.photos/400/300?random=1" alt="Memory 1" />
+        <p class="caption">Our Favorite Trip 🏖️</p>
+      </div>
+      <div class="polaroid">
+        <img src="https://picsum.photos/400/300?random=2" alt="Memory 2" />
+        <p class="caption">Unstoppable Chaos 😂</p>
+      </div>
+      <div class="polaroid">
+        <img src="https://picsum.photos/400/300?random=3" alt="Memory 3" />
+        <p class="caption">Always Proud of You ✨</p>
+      </div>
+    </div>
+
+    <!-- Letter Reveal -->
+    <div class="gift-box-section">
+      <button class="gift-btn" id="revealBtn" onclick="toggleMessage()">
+        🎁 Tap to Open Your Letter
+      </button>
+
+      <div class="letter" id="secretLetter">
+        <h3>Dear Sister,</h3>
+        <p>
+          Even though we are in different cities, you are always the first person I want to share good news or funny stories with. 
+        </p>
+        <br />
+        <p>
+          Thank you for always being my biggest cheerleader, my favorite confidant, and the best sister anyone could ask for. Can't wait until our next visit!
+        </p>
+        <br />
+        <p><strong>With love,</strong><br />Your sibling</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Reveal Letter & Trigger Confetti
+    function toggleMessage() {
+      const letter = document.getElementById('secretLetter');
+      const btn = document.getElementById('revealBtn');
+
+      if (!letter.classList.contains('open')) {
+        letter.classList.add('open');
+        btn.textContent = '💖 Enjoy Your Day!';
+        startConfetti();
+      }
+    }
+
+    // Lightweight Confetti Particle Engine
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createParticle() {
+      const colors = ['#ff6b81', '#70a1ff', '#7bed9f', '#ffa502', '#ff4757'];
+      return {
+        x: Math.random() * canvas.width,
+        y: -10,
+        size: Math.random() * 8 + 4,
+        speedY: Math.random() * 3 + 2,
+        speedX: (Math.random() - 0.5) * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 10
+      };
+    }
+
+    let animationId;
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, index) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.rotation += p.rotationSpeed;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+
+        if (p.y > canvas.height) {
+          particles.splice(index, 1);
+        }
+      });
+
+      if (particles.length > 0) {
+        animationId = requestAnimationFrame(animateConfetti);
+      }
+    }
+
+    function startConfetti() {
+      particles = [];
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          particles.push(createParticle());
+          if (particles.length === 1) animateConfetti();
+        }, i * 20);
+      }
+    }
+  </script>
+</body>
+</html>
