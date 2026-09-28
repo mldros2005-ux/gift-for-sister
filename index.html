@@ -694,7 +694,7 @@
       { q: "Panda's favorite place to sleep", a: "buggu's chest" },
       { q: "The instrument we often talk about 😂", a: "tabla" },
       { q: "Our proof emoji", a: "😘" },
-      { q: "Our jan meeting date", a: "7" },
+      { q: "Our janaury meeting date", a: "7" },
       { q: "what thing we ate in chatpata", a: "brownie" }
     ];
 
@@ -705,7 +705,7 @@
     function initGame() {
       const grid = document.getElementById('cardsGrid');
       grid.innerHTML = '';
-      const icons = ['🐼', '⭐', '🎈', '💖', '🎁'];
+      const icons = ['🐼', '⭐', '🧿', '💖', '🎁'];
       const deck = [...icons, ...icons].sort(() => Math.random() - 0.5);
 
       deck.forEach((icon, index) => {
@@ -817,7 +817,7 @@
     canvas.addEventListener('mousemove', scratch);
 
     canvas.addEventListener('touchstart', () => isScratching = true);
-    canvas.addEventListener('touchend', () => isScratching = false);
+    canvas.addEventListener('touchend', () => isScratching = true);
     canvas.addEventListener('touchmove', scratch);
 
     initScratch();
