@@ -24,17 +24,25 @@
     }
 
     body {
-      background: linear-gradient(
-  135deg,
-  #ff9a9e 0%,
-  #fecfef 15%,
-  #feefd0 30%,
-  #e2f0d9 45%,
-  #d4f0f0 60%,
-  #c8d6e5 75%,
-  #e8c5e5 100%
+  background: linear-gradient(
+    135deg,
+    #ff4757 0%,
+    #ffa502 20%,
+    #2ed573 40%,
+    #1e90ff 60%,
+    #a29bfe 80%,
+    #fd79a8 100%
+  );
+  background-size: 400% 400%;
+  animation: rainbowAnimation 12s ease infinite;
+}
 
-      );
+@keyframes rainbowAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
       background-size: 400% 400%;
       animation: rainbowGradient 14s ease infinite;
       color: var(--text-color);
