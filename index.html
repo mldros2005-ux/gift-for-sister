@@ -24,20 +24,12 @@
     }
 
     body {
-  background: linear-gradient(
-    135deg,
-    #ff4757 100%
-    #ffa502 100%,
-    #2ed573 100%,
-    #1e90ff 100%,
-    #a29bfe 100%,
-    #fd79a8 100%
-  );
-  background-size: 400% 400%;
-  animation: rainbowAnimation 12s ease infinite;
+  background: linear-gradient(135deg, #ff0000 0%, #ff7f00 50%, #ffff00 100%);
+  background-size: 300% 300%;
+  animation: flameFlow 8s ease infinite;
 }
 
-@keyframes rainbowAnimation {
+@keyframes flameFlow {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
