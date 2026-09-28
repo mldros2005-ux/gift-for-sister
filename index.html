@@ -3,281 +3,739 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Special Gift For You ✨</title>
+  <title>Happy Birthday! 💖</title>
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
-      --card-bg: #ffffff;
-      --accent-color: #ff6b81;
-      --text-main: #2f3542;
-      --text-muted: #747d8c;
-      --shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      --text-color: #2d3436;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.4);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      user-select: none;
     }
 
     body {
-      background: var(--bg-gradient);
-      color: var(--text-main);
+      background: linear-gradient(
+        135deg,
+        #ff9a9e 0%,
+        #fecfef 20%,
+        #a1c4fd 40%,
+        #c2e9fb 60%,
+        #d4fc79 80%,
+        #96e6a1 100%
+      );
+      background-size: 400% 400%;
+      animation: rainbowGradient 18s ease infinite;
+      color: var(--text-color);
+      overflow-x: hidden;
       min-height: 100vh;
+    }
+
+    @keyframes rainbowGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .page {
+      min-height: 100vh;
+      width: 100vw;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 900px;
-      width: 100%;
+      justify-content: center;
+      position: relative;
       text-align: center;
     }
 
-    header {
-      margin-bottom: 40px;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--accent-color);
-      margin-bottom: 8px;
-    }
-
-    header p {
+    .btn {
+      background: #ffffff;
+      color: #ff6b81;
+      border: none;
+      padding: 14px 32px;
       font-size: 1.1rem;
-      color: var(--text-muted);
-    }
-
-    /* Photo Grid Section */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      margin-bottom: 50px;
-    }
-
-    .polaroid {
-      background: var(--card-bg);
-      padding: 15px 15px 25px 15px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 700;
+      border-radius: 50px;
       cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      margin-top: 20px;
     }
 
-    .polaroid:hover {
-      transform: translateY(-8px) rotate(-1deg);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    .btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
 
-    .polaroid img {
+    /* Page 1: Birthday Wish */
+    .title-banner {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 25px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      max-width: 600px;
+    }
+
+    .title-banner h1 {
+      font-size: 2.8rem;
+      color: #ff4757;
+      margin-bottom: 15px;
+    }
+
+    /* Page 2: 8 Surprise Boxes */
+    .boxes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 20px;
       width: 100%;
-      height: 220px;
-      object-fit: cover;
+      max-width: 650px;
+      margin-top: 30px;
+    }
+
+    .box-card {
+      background: var(--card-bg);
+      height: 130px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+      transition: transform 0.4s ease, background 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .box-card:hover { transform: scale(1.05); }
+
+    .box-card .reveal-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 10px;
+      color: #333;
+      display: none;
+    }
+
+    .box-card.opened {
+      background: #ffffff;
+      transform: rotateY(180deg);
+    }
+
+    .box-card.opened .box-icon { display: none; }
+    .box-card.opened .reveal-text { display: block; transform: rotateY(180deg); }
+
+    /* Page 3: Panda Wall & Game */
+    #panda-container {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .panda-emoji {
+      position: absolute;
+      font-size: 2rem;
+      user-select: none;
+    }
+
+    .lock-overlay {
+      position: absolute;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .lock-overlay input {
+      padding: 12px;
+      font-size: 1rem;
+      width: 80%;
+      border: 2px solid #ddd;
+      border-radius: 25px;
+      margin: 15px 0;
+      text-align: center;
+      outline: none;
+    }
+
+    /* Memory Matching Game */
+    .game-area {
+      display: none;
+      width: 100%;
+      max-width: 600px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 16px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 10px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #2ed573;
+      transition: width 0.4s ease;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .memory-card {
+      height: 90px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .memory-card.flipped {
+      background: #fff;
+      transform: rotateY(180deg);
+    }
+
+    /* Quiz Modal */
+    .quiz-modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .quiz-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .quiz-card input {
+      padding: 10px;
+      width: 80%;
+      margin: 15px 0;
+      border: 1px solid #ccc;
       border-radius: 8px;
     }
 
-    .polaroid .caption {
-      margin-top: 15px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
+    .treasure-chest {
+      font-size: 5rem;
+      cursor: pointer;
+      display: none;
+      animation: bounce 1.5s infinite;
+      margin-top: 20px;
     }
 
-    /* Message Reveal Section */
-    .gift-box-section {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 40px 30px;
-      box-shadow: var(--shadow);
-      max-width: 600px;
-      margin: 0 auto;
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Page 4: String Gallery */
+    .string-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 850px;
+      margin-top: 20px;
+    }
+
+    .string-photo-card {
       position: relative;
+      background: #fff;
+      padding: 12px 12px 30px 12px;
+      border-radius: 8px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      cursor: pointer;
     }
 
-    .gift-btn {
-      background: var(--accent-color);
-      color: #fff;
-      border: none;
-      padding: 14px 28px;
+    .string-photo-card::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      width: 2px;
+      height: 30px;
+      background: #ff6b81;
+    }
+
+    .string-photo-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Modal Image View */
+    .image-lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .image-lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+    }
+
+    /* Page 5: Music Player */
+    .player-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 25px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .lyrics-box {
+      margin-top: 20px;
+      height: 120px;
+      overflow-y: auto;
       font-size: 1.1rem;
       font-weight: 600;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(255, 107, 129, 0.3);
-      transition: all 0.3s ease;
+      color: #ff4757;
+      line-height: 1.8;
+      padding: 10px;
+      border-top: 1px solid #eee;
     }
 
-    .gift-btn:hover {
-      transform: scale(1.05);
-      background: #ff4757;
-    }
-
-    .letter {
-      max-height: 0;
-      opacity: 0;
+    /* Page 6: Scratch Card */
+    .scratch-container {
+      position: relative;
+      width: 320px;
+      height: 420px;
+      margin-top: 20px;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       overflow: hidden;
-      transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.4s ease;
+    }
+
+    .letter-content {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #ffffff;
+      padding: 30px 20px;
       text-align: left;
-      line-height: 1.7;
-      font-size: 1.05rem;
-      color: #57606f;
-      background: #fafafa;
-      border-left: 4px solid var(--accent-color);
-      padding: 0 20px;
-      border-radius: 0 10px 10px 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      border: 12px solid #fff;
+      background-image: radial-gradient(#ffb6c1 20%, transparent 20%);
+      background-size: 20px 20px;
+      overflow-y: auto;
     }
 
-    .letter.open {
-      max-height: 500px;
-      opacity: 1;
-      padding: 20px;
-      margin-top: 25px;
-    }
-
-    .letter h3 {
-      color: var(--accent-color);
-      margin-bottom: 10px;
-    }
-
-    /* Confetti Canvas */
-    canvas#confetti {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 999;
+    canvas#scratch-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 2;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <canvas id="confetti"></canvas>
+  <!-- PAGE 1: Birthday Wish -->
+  <section class="page" id="page1">
+    <div class="title-banner">
+      <h1>Happy Birthday! 🎂✨</h1>
+      <p>To the most incredible person in my world. Ready for your birthday surprises?</p>
+      <button class="btn" onclick="scrollToPage('page2')">Start Surprises 🎁</button>
+    </div>
+  </section>
 
-  <div class="container">
-    <header>
-      <h1>A Little Something For You 💌</h1>
-      <p>Miles apart, but always close at heart.</p>
-    </header>
+  <!-- PAGE 2: 8 Surprise Boxes -->
+  <section class="page" id="page2">
+    <h2>Tap Each Box to Reveal a Surprise 💖</h2>
+    <div class="boxes-grid">
+      <div class="box-card" onclick="openBox(this, ' Unlimited Hugs Voucher 🫂')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' Late-Night Food Delivery 🍕')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' Zero-Argument Pass 🤫')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' You Are My Favorite Human 🌟')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' Movie Night Choice 🍿')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' Endless Secret Secret Secrets 🤫')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' Lifetime Bestie License 📜')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, ' Big Surprise Unlocked Below! 👇')"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+    </div>
+    <button class="btn" onclick="scrollToPage('page3'); startPandaRain();">Next Level 🐼</button>
+  </section>
 
-    <!-- Polaroid Memories Gallery -->
-    <div class="gallery">
-      <div class="polaroid">
-        <img src="https://picsum.photos/400/300?random=1" alt="Memory 1" />
-        <p class="caption">Our Favorite Trip 🏖️</p>
-      </div>
-      <div class="polaroid">
-        <img src="https://picsum.photos/400/300?random=2" alt="Memory 2" />
-        <p class="caption">Unstoppable Chaos 😂</p>
-      </div>
-      <div class="polaroid">
-        <img src="https://picsum.photos/400/300?random=3" alt="Memory 3" />
-        <p class="caption">Always Proud of You ✨</p>
-      </div>
+  <!-- PAGE 3: Panda Rain, Password & Card Matching Game -->
+  <section class="page" id="page3">
+    <div id="panda-container"></div>
+
+    <!-- Password Lock Overlay -->
+    <div class="lock-overlay" id="lockOverlay">
+      <h3>🐼 Panda Invasion!</h3>
+      <p style="font-size: 0.9rem; margin-top: 5px; color: #666;">Enter the passcode to clear the pandas.</p>
+      <p><strong>Hint:</strong> My Nickname</p>
+      <input type="password" id="passInput" placeholder="Enter password..." />
+      <br>
+      <button class="btn" onclick="checkPassword()">Unlock Game 🔓</button>
     </div>
 
-    <!-- Letter Reveal -->
-    <div class="gift-box-section">
-      <button class="gift-btn" id="revealBtn" onclick="toggleMessage()">
-        🎁 Tap to Open Your Letter
-      </button>
-
-      <div class="letter" id="secretLetter">
-        <h3>Dear Sister,</h3>
-        <p>
-          Even though we are in different cities, you are always the first person I want to share good news or funny stories with. 
-        </p>
-        <br />
-        <p>
-          Thank you for always being my biggest cheerleader, my favorite confidant, and the best sister anyone could ask for. Can't wait until our next visit!
-        </p>
-        <br />
-        <p><strong>With love,</strong><br />Your sibling</p>
+    <!-- Card Flip Game -->
+    <div class="game-area" id="gameArea">
+      <h2>Match the Pairs & Answer the Memories 🧠</h2>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
       </div>
+      <div class="cards-grid" id="cardsGrid"></div>
+      <div class="treasure-chest" id="treasureChest" onclick="scrollToPage('page4')">🧰</div>
+    </div>
+  </section>
+
+  <!-- Quiz Modal -->
+  <div class="quiz-modal" id="quizModal">
+    <div class="quiz-card">
+      <h3 id="quizQuestion">Question here</h3>
+      <input type="text" id="quizAnswerInput" placeholder="Type answer..." />
+      <br>
+      <button class="btn" onclick="submitQuizAnswer()">Submit Answer</button>
     </div>
   </div>
 
-  <script>
-    // Reveal Letter & Trigger Confetti
-    function toggleMessage() {
-      const letter = document.getElementById('secretLetter');
-      const btn = document.getElementById('revealBtn');
+  <!-- PAGE 4: String Photo Gallery -->
+  <section class="page" id="page4">
+    <h2>Memories Bound by Love Threads 🧵✨</h2>
+    <div class="string-gallery">
+      <div class="string-photo-card" onclick="viewImage('https://picsum.photos/600/800?random=1')"><img src="https://picsum.photos/300/400?random=1" alt="Memory 1"></div>
+      <div class="string-photo-card" onclick="viewImage('https://picsum.photos/600/800?random=2')"><img src="https://picsum.photos/300/400?random=2" alt="Memory 2"></div>
+      <div class="string-photo-card" onclick="viewImage('https://picsum.photos/600/800?random=3')"><img src="https://picsum.photos/300/400?random=3" alt="Memory 3"></div>
+      <div class="string-photo-card" onclick="viewImage('https://picsum.photos/600/800?random=4')"><img src="https://picsum.photos/300/400?random=4" alt="Memory 4"></div>
+      <div class="string-photo-card" onclick="viewImage('https://picsum.photos/600/800?random=5')"><img src="https://picsum.photos/300/400?random=5" alt="Memory 5"></div>
+      <div class="string-photo-card" onclick="viewImage('https://picsum.photos/600/800?random=6')"><img src="https://picsum.photos/300/400?random=6" alt="Memory 6"></div>
+    </div>
+    <button class="btn" onclick="scrollToPage('page5')">Slide to Music 🎵</button>
+  </section>
 
-      if (!letter.classList.contains('open')) {
-        letter.classList.add('open');
-        btn.textContent = '💖 Enjoy Your Day!';
-        startConfetti();
+  <!-- Image Lightbox -->
+  <div class="image-lightbox" id="lightbox" onclick="this.style.display='none'">
+    <img id="lightboxImg" src="" alt="Enlarged view">
+  </div>
+
+  <!-- PAGE 5: Music Player -->
+  <section class="page" id="page5">
+    <h2>The song I will sing for you forever 🎶</h2>
+    <div class="player-card">
+      <h3>Die With A Smile - Bruno Mars & Lady Gaga</h3>
+      <button class="btn" id="playBtn" onclick="toggleMusic()">▶ Play Song</button>
+      <div class="lyrics-box" id="lyricsBox">
+        <p>If the world was ending, I'd want to be next to you...</p>
+        <p>If the party was over and our time on Earth was through...</p>
+        <p>I'd want to hold you just for a while...</p>
+        <p>And die with a smile... 💖</p>
+      </div>
+    </div>
+    <button class="btn" onclick="scrollToPage('page6')">Final Secret Surprise ✉️</button>
+  </section>
+
+  <!-- PAGE 6: Scratch Card & Final Letter -->
+  <section class="page" id="page6">
+    <h2>Scratch the Card to Reveal Your Message 🌸</h2>
+    <div class="scratch-container">
+      <div class="letter-content">
+        <h3>To my precious one,</h3>
+        <br>
+        <p>Happy Birthday! Distance can never change how close we are. Thank you for all the laughs, inside jokes, and unconditional support. You are truly my favorite person.</p>
+        <br>
+        <p>Always stay happy and shining bright!</p>
+        <br>
+        <p><strong>Forever yours,</strong><br>Buggu</p>
+      </div>
+      <canvas id="scratch-canvas" width="320" height="420"></canvas>
+    </div>
+  </section>
+
+  <script>
+    // Audio Synthesizer Effects (No External Sound Files Needed)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playPopSound() {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.1);
+    }
+
+    function playSadSound() {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+      osc.frequency.linearRampToValueAtTime(150, audioCtx.currentTime + 0.3);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.3);
+    }
+
+    // Scroll helper
+    function scrollToPage(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Page 2 Box Opener
+    function openBox(element, text) {
+      if (!element.classList.contains('opened')) {
+        playPopSound();
+        element.classList.add('opened');
+        element.querySelector('.reveal-text').textContent = text;
       }
     }
 
-    // Lightweight Confetti Particle Engine
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+    // Page 3 Panda Rain Physics Simulation
+    let pandas = [];
+    let animationFrame;
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function startPandaRain() {
+      const container = document.getElementById('panda-container');
+      container.innerHTML = '';
+      pandas = [];
+      const count = 40;
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'panda-emoji';
+        el.textContent = '🐼';
+        container.appendChild(el);
+
+        pandas.push({
+          el: el,
+          x: Math.random() * (window.innerWidth - 40),
+          y: Math.random() * (window.innerHeight / 2),
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 2 + 1
+        });
+      }
+      updatePandas();
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
 
-    function createParticle() {
-      const colors = ['#ff6b81', '#70a1ff', '#7bed9f', '#ffa502', '#ff4757'];
-      return {
-        x: Math.random() * canvas.width,
-        y: -10,
-        size: Math.random() * 8 + 4,
-        speedY: Math.random() * 3 + 2,
-        speedX: (Math.random() - 0.5) * 2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 10
-      };
-    }
+    function updatePandas() {
+      const maxY = window.innerHeight * 0.85;
+      pandas.forEach(p => {
+        p.vy += 0.2; // Gravity
+        p.x += p.vx;
+        p.y += p.vy;
 
-    let animationId;
-    function animateConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p, index) => {
-        p.y += p.speedY;
-        p.x += p.speedX;
-        p.rotation += p.rotationSpeed;
-
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate((p.rotation * Math.PI) / 180);
-        ctx.fillStyle = p.color;
-        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-        ctx.restore();
-
-        if (p.y > canvas.height) {
-          particles.splice(index, 1);
+        if (p.y > maxY) {
+          p.y = maxY;
+          p.vy *= -0.6; // Bounce
         }
+        if (p.x < 0 || p.x > window.innerWidth - 40) {
+          p.vx *= -1;
+        }
+
+        p.el.style.transform = `translate(${p.x}px, ${p.y}px)`;
       });
 
-      if (particles.length > 0) {
-        animationId = requestAnimationFrame(animateConfetti);
+      animationFrame = requestAnimationFrame(updatePandas);
+    }
+
+    function checkPassword() {
+      const val = document.getElementById('passInput').value.trim().toLowerCase();
+      if (val === 'buggu') {
+        playPopSound();
+        document.getElementById('lockOverlay').style.display = 'none';
+        document.getElementById('panda-container').style.display = 'none';
+        cancelAnimationFrame(animationFrame);
+        document.getElementById('gameArea').style.display = 'flex';
+        initGame();
+      } else {
+        playSadSound();
+        alert('Wrong password! Hint: My Nickname');
       }
     }
 
-    function startConfetti() {
-      particles = [];
-      for (let i = 0; i < 100; i++) {
-        setTimeout(() => {
-          particles.push(createParticle());
-          if (particles.length === 1) animateConfetti();
-        }, i * 20);
+    // Memory Game & Quiz Setup
+    const quizData = [
+      { q: "Panda's favorite place to sleep", a: "buggu's chest" },
+      { q: "The instrument we often talk about 😂", a: "tabla" },
+      { q: "Our proof emoji", a: "😘" },
+      { q: "Our jan meeting date", a: "7" },
+      { q: "The thing we ate immn chatpata", a: "brownie" }
+    ];
+
+    let matchedPairs = 0;
+    let currentQuizIndex = -1;
+    let flippedCards = [];
+
+    function initGame() {
+      const grid = document.getElementById('cardsGrid');
+      grid.innerHTML = '';
+      const icons = ['🐼', '⭐', '🎈', '💖', '🎁'];
+      const deck = [...icons, ...icons].sort(() => Math.random() - 0.5);
+
+      deck.forEach((icon, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.icon = icon;
+        card.dataset.index = index;
+        card.innerText = '❓';
+        card.onclick = () => flipCard(card);
+        grid.appendChild(card);
+      });
+    }
+
+    function flipCard(card) {
+      if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+        playPopSound();
+        card.classList.add('flipped');
+        card.innerText = card.dataset.icon;
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          if (flippedCards[0].dataset.icon === flippedCards[1].dataset.icon) {
+            flippedCards = [];
+            currentQuizIndex = matchedPairs;
+            setTimeout(showQuiz, 500);
+          } else {
+            playSadSound();
+            setTimeout(() => {
+              flippedCards.forEach(c => {
+                c.classList.remove('flipped');
+                c.innerText = '❓';
+              });
+              flippedCards = [];
+            }, 800);
+          }
+        }
       }
     }
+
+    function showQuiz() {
+      const q = quizData[currentQuizIndex];
+      document.getElementById('quizQuestion').innerText = `Q${currentQuizIndex + 1}: ${q.q}`;
+      document.getElementById('quizAnswerInput').value = '';
+      document.getElementById('quizModal').style.display = 'flex';
+    }
+
+    function submitQuizAnswer() {
+      const userAns = document.getElementById('quizAnswerInput').value.trim().toLowerCase();
+      const correctAns = quizData[currentQuizIndex].a.toLowerCase();
+
+      if (userAns === correctAns) {
+        playPopSound();
+        document.getElementById('quizModal').style.display = 'none';
+        matchedPairs++;
+        document.getElementById('progressBar').style.width = `${(matchedPairs / 5) * 100}%`;
+
+        if (matchedPairs === 5) {
+          document.getElementById('treasureChest').style.display = 'block';
+        }
+      } else {
+        playSadSound();
+        alert('Incorrect answer, try again!');
+      }
+    }
+
+    // Lightbox image viewer
+    function viewImage(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    // Music Player Simulation
+    let isPlaying = false;
+    function toggleMusic() {
+      const btn = document.getElementById('playBtn');
+      if (!isPlaying) {
+        btn.textContent = '⏸ Pause Song';
+        isPlaying = true;
+        playPopSound();
+      } else {
+        btn.textContent = '▶ Play Song';
+        isPlaying = false;
+      }
+    }
+
+    // Scratch Card Logic
+    const canvas = document.getElementById('scratch-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function initScratch() {
+      ctx.fillStyle = '#b2bec3';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#636e72';
+      ctx.font = '20px Segoe UI';
+      ctx.textAlign = 'center';
+      ctx.fillText('Scratch Here 🪙', canvas.width / 2, canvas.height / 2);
+    }
+
+    let isScratching = false;
+    function scratch(e) {
+      if (!isScratching) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX || e.touches[0].clientX) - rect.left;
+      const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 20, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    canvas.addEventListener('mousedown', () => isScratching = true);
+    canvas.addEventListener('mouseup', () => isScratching = false);
+    canvas.addEventListener('mousemove', scratch);
+
+    canvas.addEventListener('touchstart', () => isScratching = true);
+    canvas.addEventListener('touchend', () => isScratching = false);
+    canvas.addEventListener('touchmove', scratch);
+
+    initScratch();
   </script>
 </body>
 </html>
