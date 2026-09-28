@@ -21,23 +21,27 @@
       padding: 0;
       font-family: 'Poppins', sans-serif;
       user-select: none;
-    }
-    
-body{
-    background: linear-gradient(
-  135deg,
-  #fffdd0 36%,    /* Cream */
-  #7b3f00 60%,   /* Chocolate */
- #fffdd0 36%,    /* Cream */
-  #0a0a0a 60%   /* Dark Black */
-);
+    base {
+      background: 
+  /* Highlight gloss on the folds */
+  radial-gradient(circle at 30% 20%, rgba(255, 235, 205, 0.4) 0%, transparent 40%),
+  radial-gradient(circle at 75% 65%, rgba(255, 220, 180, 0.3) 0%, transparent 45%),
+  
+  /* Diagonal silk folds with soft sheen and dark shadows */
+  linear-gradient(
+    115deg,
+    #2c1609 0%,    /* Deep espresso fold shadow */
+    #5a3219 18%,   /* Rich chestnut brown */
+    #b8860b 28%,   /* Golden silk highlight */
+    #f3d08c 33%,   /* Bright reflective gloss */
+    #6d3d1e 40%,   /* Mid-tone satin brown */
+    #231005 52%,   /* Deep shadow crease */
+    #8c4a23 65%,   /* Warm copper brown */
+    #d4af37 73%,   /* Metallic shimmer */
+    #4a2411 85%,   /* Dark amber fold */
+    #1f0b03 100%   /* Deep shadow */
+  );
 
-
-@keyframes flameFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
       background-size: 400% 400%;
       animation: rainbowGradient 14s ease infinite;
@@ -801,10 +805,10 @@ body{
     function initScratch() {
       ctx.fillStyle = '#b2bec3';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#636e72';
+      ctx.fillStyle = ' #8c4a23';
       ctx.font = '20px Poppins';
       ctx.textAlign = 'center';
-      ctx.fillText('Scratch Here 🪙', canvas.width / 2, canvas.height / 2);
+      ctx.fillText('Scratch Here 🎁', canvas.width / 2, canvas.height / 2);
     }
 
     let isScratching = false;
