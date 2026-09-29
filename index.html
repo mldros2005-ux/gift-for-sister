@@ -773,18 +773,19 @@
       document.getElementById('lightbox').style.display = 'flex';
     }
 
-      <!-- PAGE 5: Music Player -->
+    <!-- PAGE 5: Music Player -->
   <section class="page" id="page5">
     <h2>The song I will sing for you forever 🎶</h2>
     <div class="player-card">
       <h3>Die With A Smile - Bruno Mars & Lady Gaga</h3>
       <br>
       <audio id="audioTrack" preload="auto">
-        <source src="Lady_Gaga,_Bruno_Mars_-_Die_With_A_Smile__Lyrics_(256k).mp3" type="audio/mpeg">
+        <source src="Lady_Gaga_Bruno_Mars__Die_With_A_Smile_Lyrics_(256k).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
       </audio>
-      
+
       <button class="btn" id="playBtn" onclick="toggleMusic()">▶ Play Song</button>
-      
+
       <div class="lyrics-box" id="lyricsBox">
         <p>If the world was ending, I'd want to be next to you...</p>
         <p>If the party was over and our time on Earth was through...</p>
@@ -794,7 +795,26 @@
     </div>
     <button class="btn" onclick="scrollToPage('page6')">Final Secret Surprise ✉️</button>
   </section>
-        // Working Audio Player Toggle Fix
+
+  <!-- PAGE 6: Scratch Card -->
+  <section class="page" id="page6">
+    <h2>Scratch the Card to Reveal Your Message 🌸</h2>
+    <div class="scratch-container">
+      <div class="letter-content">
+        <h3>To my precious sister,</h3>
+        <br>
+        <p>Happy Birthday! Distance can never change how close we are. Thank you for all the laughs, inside jokes, and unconditional support. You are truly my favorite person.</p>
+        <br>
+        <p>Always stay happy and shining bright!</p>
+        <br>
+        <p><strong>Forever yours,</strong><br>Buggu</p>
+      </div>
+      <canvas id="scratch-canvas" width="320" height="420"></canvas>
+    </div>
+  </section>
+
+  <script>
+    // Working Audio Player Toggle Fix
     const audioTrack = document.getElementById('audioTrack');
     const playBtn = document.getElementById('playBtn');
 
@@ -823,7 +843,7 @@
     function initScratch() {
       ctx.fillStyle = '#b2bec3';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = ' #8c4a23';
+      ctx.fillStyle = '#636e72';
       ctx.font = '20px Poppins';
       ctx.textAlign = 'center';
       ctx.fillText('Scratch Here 🎁', canvas.width / 2, canvas.height / 2);
@@ -833,8 +853,8 @@
     function scratch(e) {
       if (!isScratching) return;
       const rect = canvas.getBoundingClientRect();
-      const x = (e.clientX || e.touches[0].clientX) - rect.left;
-      const y = (e.clientY || e.touches[0].clientY) - rect.top;
+      const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+      const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
 
       ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
@@ -843,14 +863,18 @@
     }
 
     canvas.addEventListener('mousedown', () => isScratching = true);
-    canvas.addEventListener('mouseup', () => isScratching = true);
+    canvas.addEventListener('mouseup', () => isScratching = false);
     canvas.addEventListener('mousemove', scratch);
 
     canvas.addEventListener('touchstart', () => isScratching = true);
-    canvas.addEventListener('touchend', () => isScratching = true);
+    canvas.addEventListener('touchend', () => isScratching = false);
     canvas.addEventListener('touchmove', scratch);
 
-    initScratch();
+    // Initialize scratch layer when page loads
+    window.onload = function() {
+      initScratch();
+    };
   </script>
 </body>
 </html>
+
