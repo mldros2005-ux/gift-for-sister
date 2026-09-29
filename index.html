@@ -2,108 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday My Lil Sis 💖</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
   <style>
+    /* CSS Styles */
     :root {
-      --text-color: #2d3436;
-      --card-bg: rgba(255, 255, 255, 0.88);
+      --bg-color: #fff0f5;
+      --card-bg: rgba(255, 255, 255, 0.85);
       --glass-border: rgba(255, 255, 255, 0.6);
+      --primary-color: #ff4757;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
-      user-select: none;
     }
-    
-      body{
-      background: 
-  /* Highlight gloss on the folds */
-  radial-gradient(circle at 30% 20%, rgba(255, 235, 205, 0.4) 0%, transparent 40%),
-  radial-gradient(circle at 75% 65%, rgba(255, 220, 180, 0.3) 0%, transparent 45%),
-  /* Diagonal silk folds with soft sheen and dark shadows */
-  linear-gradient(
-    115deg,
-    #2c1609 0%,    /* Deep espresso fold shadow */
-    #5a3219 18%,   /* Rich chestnut brown */
-    #b8860b 28%,   /* Golden silk highlight */
-    #f3d08c 33%,   /* Bright reflective gloss */
-    #6d3d1e 40%,   /* Mid-tone satin brown */
-    #231005 52%,   /* Deep shadow crease */
-    #8c4a23 65%,   /* Warm copper brown */
-    #d4af37 73%,   /* Metallic shimmer */
-    #4a2411 85%,   /* Dark amber fold */
-    #1f0b03 100%   /* Deep shadow */
-  );
- 
-      
-    /* Floating Canvas overlay for Balloons & Particles */
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      color: #2d3436;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    /* Fixed Canvas for Particles & Balloons */
     #fx-canvas {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
-      z-index: 999;
+      z-index: 99;
     }
 
     .page {
       min-height: 100vh;
-      width: 100vw;
-      padding: 40px 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
       position: relative;
-      text-align: center;
     }
 
     .btn {
-      background: #ffffff;
-      color: #ff6b81;
+      background: var(--primary-color);
+      color: #fff;
       border: none;
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 50px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
       margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+      transition: transform 0.2s, background 0.2s;
     }
 
     .btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      transform: scale(1.05);
+      background: #ff6b81;
     }
 
-    /* Page 1: Birthday Wish */
+    /* Page 1 */
     .title-banner {
       background: var(--card-bg);
       backdrop-filter: blur(10px);
-      padding: 45px 30px;
-      border-radius: 30px;
+      padding: 40px 30px;
+      border-radius: 20px;
       border: 1px solid var(--glass-border);
       box-shadow: 0 20px 40px rgba(0,0,0,0.08);
       max-width: 650px;
     }
 
     .title-banner h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 3.5rem;
-      color: #ff4757;
+      font-family: 'Dancing Script', cursive, sans-serif;
+      font-size: 3rem;
+      color: var(--primary-color);
       margin-bottom: 15px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
     }
 
-    /* Page 2: 8 Surprise Boxes */
+    /* Page 2: Boxes */
     .boxes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -116,11 +98,11 @@
     .box-card {
       background: var(--card-bg);
       height: 130px;
-      border-radius: 18px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
+      font-size: 1.1rem;
       cursor: pointer;
       box-shadow: 0 10px 20px rgba(0,0,0,0.06);
       transition: transform 0.4s ease, background 0.4s ease;
@@ -144,9 +126,12 @@
     }
 
     .box-card.opened .box-icon { display: none; }
-    .box-card.opened .reveal-text { display: block; transform: rotateY(180deg); }
+    .box-card.opened .reveal-text {
+      display: block;
+      transform: rotateY(180deg);
+    }
 
-    /* Page 3: Panda Wall & Game */
+    /* Page 3: Panda & Lock */
     #panda-container {
       position: absolute;
       top: 0; left: 0;
@@ -170,7 +155,7 @@
       backdrop-filter: blur(8px);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       max-width: 400px;
       width: 90%;
     }
@@ -186,19 +171,19 @@
       outline: none;
     }
 
-    /* Memory Matching Game */
+    /* Memory Game */
     .game-area {
       display: none;
       width: 100%;
-      max-width: 600px;
+      max-width: 500px;
       flex-direction: column;
       align-items: center;
     }
 
     .progress-bar-container {
       width: 100%;
-      height: 16px;
-      background: rgba(255,255,255,0.6);
+      height: 12px;
+      background: rgba(255,255,255,0.8);
       border-radius: 10px;
       margin-bottom: 25px;
       overflow: hidden;
@@ -213,8 +198,8 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
       width: 100%;
     }
 
@@ -272,10 +257,9 @@
     }
 
     .treasure-chest {
-      font-size: 5.5rem;
+      font-size: 3.5rem;
       cursor: pointer;
       animation: bounce 1.5s infinite;
-      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
     }
 
     @keyframes bounce {
@@ -298,18 +282,8 @@
       background: #fff;
       padding: 12px 12px 30px 12px;
       border-radius: 8px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
       cursor: pointer;
-    }
-
-    .string-photo-card::before {
-      content: '';
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      width: 2px;
-      height: 30px;
-      background: #ff6b81;
     }
 
     .string-photo-card img {
@@ -319,7 +293,6 @@
       border-radius: 6px;
     }
 
-    /* Modal Image View */
     .image-lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -333,7 +306,7 @@
 
     .image-lightbox img {
       max-width: 90%;
-      max-height: 80%;
+      max-height: 80vh;
       border-radius: 12px;
     }
 
@@ -342,7 +315,7 @@
       background: var(--card-bg);
       backdrop-filter: blur(10px);
       padding: 30px;
-      border-radius: 25px;
+      border-radius: 20px;
       max-width: 500px;
       width: 100%;
       box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -350,10 +323,9 @@
 
     .lyrics-box {
       margin-top: 20px;
-      height: 130px;
+      height: 120px;
       overflow-y: auto;
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1rem;
       color: #ff4757;
       line-height: 1.8;
       padding: 10px;
@@ -376,13 +348,11 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: #ffffff;
-      padding: 30px 20px;
+      padding: 25px;
       text-align: left;
       font-size: 0.95rem;
       line-height: 1.6;
       border: 12px solid #fff;
-      background-image: radial-gradient(#ffb6c1 20%, transparent 20%);
-      background-size: 20px 20px;
       overflow-y: auto;
     }
 
@@ -392,6 +362,7 @@
       width: 100%; height: 100%;
       z-index: 2;
       cursor: pointer;
+      touch-action: none;
     }
   </style>
 </head>
@@ -402,9 +373,9 @@
   <!-- PAGE 1: Birthday Wish -->
   <section class="page" id="page1">
     <div class="title-banner">
-      <h1>Happy Birthday My Lil Sis 🎂✨</h1>
-      <p>To the most incredible sister in my world. Ready for your birthday surprises?</p>
-      <button class="btn" onclick="scrollToPage('page2')">Start Surprises 🎁</button>
+      <h1>Happy Birthday My Lil Sis 🌸✨</h1>
+      <p>To the most incredible sister in my world. Ready for your birthday surprise?</p>
+      <button class="btn" onclick="scrollToPage('page2')">Start Surprise 🎁</button>
     </div>
   </section>
 
@@ -412,14 +383,14 @@
   <section class="page" id="page2">
     <h2>Tap Each Box to Reveal a Surprise 💖</h2>
     <div class="boxes-grid">
-      <div class="box-card" onclick="openBox(this, ' Unlimited Hugs Voucher 🫂', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' Late night talk voucher 💬', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' Zero-Argument Pass 🤫', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' You Are My Favorite Human 🌟', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' Life time guide pass 🧭', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' Endless Secret Secrets 🤫', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' Lifetime Bestie License 📜', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
-      <div class="box-card" onclick="openBox(this, ' Big Surprise Unlocked Below! 👇', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Unlimited Hugs Voucher 🫂', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Late night talk voucher ☕', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Zero Argument Pass 🕊️', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'You Are My Favorite Human ⭐', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Lifetime guide pass 🧭', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Endless Secret Secrets 🤫', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Lifetime Barbie License 👑', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
+      <div class="box-card" onclick="openBox(this, 'Big Surprise Unlocked Below! 🌟', event)"><span class="box-icon">🎁</span><span class="reveal-text"></span></div>
     </div>
     <button class="btn" onclick="scrollToPage('page3'); startPandaRain();">Next Level 🐼</button>
   </section>
@@ -430,8 +401,8 @@
 
     <!-- Password Lock Overlay -->
     <div class="lock-overlay" id="lockOverlay">
-      <h3>🐼 Panda Invasion!</h3>
-      <p style="font-size: 0.9rem; margin-top: 5px; color: #666;">Enter the passcode to clear the pandas.</p>
+      <h3>Panda Invasion! 🐼</h3>
+      <p style="font-size: 0.9rem; margin-top: 5px; color: #555;">Enter the passcode to clear the pandas.</p>
       <p><strong>Hint:</strong> My Nickname</p>
       <input type="password" id="passInput" placeholder="Enter password..." />
       <br>
@@ -440,15 +411,15 @@
 
     <!-- Card Flip Game -->
     <div class="game-area" id="gameArea">
-      <h2>Match the Pairs & Answer the Memories 🧠</h2>
+      <h2>Match the Pairs & Answer the Memories 🧠💖</h2>
       <div class="progress-bar-container">
         <div class="progress-bar" id="progressBar"></div>
       </div>
       <div class="cards-grid" id="cardsGrid"></div>
-      
+
       <div class="treasure-chest-wrapper" id="treasureChestWrapper" onclick="scrollToPage('page4')">
-        <div class="treasure-chest">📦</div>
-        <p style="font-weight: 600; color: #b8860b;">Tap Box to Open Gallery!</p>
+        <div class="treasure-chest">🎁</div>
+        <p style="font-weight: 600; color: #ff4757;">Tap Box to Open Gallery!</p>
       </div>
     </div>
   </section>
@@ -465,21 +436,21 @@
 
   <!-- PAGE 4: String Photo Gallery -->
   <section class="page" id="page4">
-    <h2>The view i can admire my whole life🫠🫠❤️‍🩹</h2>
+    <h2>The view I can admire my whole life 📸💖</h2>
     <div class="string-gallery">
-      <div class="string-photo-card" onclick="viewImage('IMG-20260504-WA0014~2.jpg')"><img src="IMG-20260504-WA0014~2.jpg" alt="Memory 1"></div>
-      <div class="string-photo-card" onclick="viewImage('Screenshot_20260929-094629~2.jpg')"><img src="Screenshot_20260929-094629~2.jpg" alt="Memory 2"></div>
-      <div class="string-photo-card" onclick="viewImage('Screenshot_20260330-181504~4.jpg')"><img src="Screenshot_20260330-181504~4.jpg" alt="Memory 3"></div>
-      <div class="string-photo-card" onclick="viewImage('IMG-20260814-WA0033~4.jpg')"><img src="IMG-20260814-WA0033~4.jpg" alt="Memory 4"></div>
-      <div class="string-photo-card" onclick="viewImage('IMG-20260830-WA0004~2.jpg')"><img src="IMG-20260830-WA0004~2.jpg" alt="Memory 5"></div>
-      <div class="string-photo-card" onclick="viewImage('IMG-20260926-WA0158~2.jpg')"><img src="IMG-20260926-WA0158~2.jpg" alt="Memory 6"></div>
+      <div class="string-photo-card" onclick="viewImage('IMG-20260908-WA0014-1.jpg')"><img src="IMG-20260908-WA0014-1.jpg" alt="Memory 1"/></div>
+      <div class="string-photo-card" onclick="viewImage('Screenshot_20260123-014621~2.jpg')"><img src="Screenshot_20260123-014621~2.jpg" alt="Memory 2"/></div>
+      <div class="string-photo-card" onclick="viewImage('IMG-20260908-WA0023~4.jpg')"><img src="IMG-20260908-WA0023~4.jpg" alt="Memory 3"/></div>
+      <div class="string-photo-card" onclick="viewImage('Screenshot_20260330-161804~4.jpg')"><img src="Screenshot_20260330-161804~4.jpg" alt="Memory 4"/></div>
+      <div class="string-photo-card" onclick="viewImage('IMG-20260908-WA0032~4.jpg')"><img src="IMG-20260908-WA0032~4.jpg" alt="Memory 5"/></div>
+      <div class="string-photo-card" onclick="viewImage('IMG-20260908-WA0158~2.jpg')"><img src="IMG-20260908-WA0158~2.jpg" alt="Memory 6"/></div>
     </div>
     <button class="btn" onclick="scrollToPage('page5')">Slide to Music 🎵</button>
   </section>
 
   <!-- Image Lightbox -->
   <div class="image-lightbox" id="lightbox" onclick="this.style.display='none'">
-    <img id="lightboxImg" src="" alt="Enlarged view">
+    <img id="lightboxImg" src="" alt="Enlarged view"/>
   </div>
 
   <!-- PAGE 5: Music Player -->
@@ -488,10 +459,12 @@
     <div class="player-card">
       <h3>Die With A Smile - Bruno Mars & Lady Gaga</h3>
       <br>
-      <audio id="audioTrack" src="Song.mp3></audio>
+      <audio id="audioTrack" src="song.mp3" preload="auto"></audio>
+
       <button class="btn" id="playBtn" onclick="toggleMusic()">▶ Play Song</button>
+
       <div class="lyrics-box" id="lyricsBox">
-        <p>Ooh, I, I just woke up from a dream...</p>
+        <p>Ooh, I just woke up from a dream...</p>
         <p>Where you and I had to say goodbye...</p>
         <p>And I don't know what it all means...</p>
         <p>If the world was ending, I'd want to be next to you...</p>
@@ -503,7 +476,7 @@
     <button class="btn" onclick="scrollToPage('page6')">Final Secret Surprise ✉️</button>
   </section>
 
-  <!-- PAGE 6: Scratch Card & Final Letter -->
+  <!-- PAGE 6: Scratch Card -->
   <section class="page" id="page6">
     <h2>Scratch the Card to Reveal Your Message 🌸</h2>
     <div class="scratch-container">
@@ -520,6 +493,7 @@
     </div>
   </section>
 
+  <!-- JAVASCRIPT ENGINE -->
   <script>
     // Canvas Particles Engine for Opening Balloons & Graffiti Pops
     const fxCanvas = document.getElementById('fx-canvas');
@@ -533,25 +507,23 @@
     window.addEventListener('resize', resizeFxCanvas);
     resizeFxCanvas();
 
-    // Spawn Balloons on Launch
     function spawnBalloons() {
-      const colors = ['#ff6b81', '#70a1ff', '#7bed9f', '#ffa502', '#ff4757', '#e8baff'];
+      const colors = ['#ff4757', '#70a1ff', '#7bed9f', '#ffa502', '#ff6b81', '#a29bfe'];
       for (let i = 0; i < 25; i++) {
         particles.push({
           x: Math.random() * fxCanvas.width,
           y: fxCanvas.height + Math.random() * 200,
           radius: Math.random() * 18 + 12,
           color: colors[Math.floor(Math.random() * colors.length)],
-          speedY: Math.random() * 2 + 1.5,
+          speedY: Math.random() * 1.5 + 1.5,
           speedX: Math.sin(Math.random() * Math.PI) * 1.5,
           type: 'balloon'
         });
       }
     }
 
-    // Graffiti Explosion at click coordinates
     function triggerGraffitiPop(x, y) {
-      const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502', '#e8baff', '#ffffff'];
+      const colors = ['#ff4757', '#ff6b81', '#70a1ff', '#7bed9f', '#ffa502', '#ffffff'];
       for (let i = 0; i < 35; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 8 + 3;
@@ -579,6 +551,7 @@
           fxCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
           fxCtx.fillStyle = p.color;
           fxCtx.fill();
+
           // Balloon String
           fxCtx.beginPath();
           fxCtx.moveTo(p.x, p.y + p.radius);
@@ -590,7 +563,7 @@
         } else if (p.type === 'graffiti') {
           p.x += p.vx;
           p.y += p.vy;
-          p.alpha -= 0.025;
+          p.alpha -= 0.02;
           fxCtx.save();
           fxCtx.globalAlpha = Math.max(p.alpha, 0);
           fxCtx.beginPath();
@@ -605,6 +578,7 @@
 
       requestAnimationFrame(animateFX);
     }
+
     spawnBalloons();
     animateFX();
 
@@ -635,7 +609,7 @@
       const container = document.getElementById('panda-container');
       container.innerHTML = '';
       pandas = [];
-      const count = 35;
+      const count = 20;
 
       for (let i = 0; i < count; i++) {
         const el = document.createElement('div');
@@ -646,9 +620,9 @@
         pandas.push({
           el: el,
           x: Math.random() * (window.innerWidth - 40),
-          y: Math.random() * (window.innerHeight / 2),
+          y: Math.random() * (-window.innerHeight / 2),
           vx: (Math.random() - 0.5) * 4,
-          vy: Math.random() * 2 + 1
+          vy: Math.random() * 3 + 3
         });
       }
       updatePandas();
@@ -662,15 +636,16 @@
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.y > maxY) {
+        if (p.y >= maxY) {
           p.y = maxY;
           p.vy *= -0.65; // Bouncing
         }
-        if (p.x < 0 || p.x > window.innerWidth - 40) {
+
+        if (p.x < 0 || p.x >= window.innerWidth - 40) {
           p.vx *= -1;
         }
 
-        p.el.style.transform = `translate(${p.x}px, ${p.y}px) rotate(${p.vx * 5}deg)`;
+        p.el.style.transform = `translate(${p.x}px, ${p.y}px) rotate(${p.x}deg)`;
       });
 
       animationFrame = requestAnimationFrame(updatePandas);
@@ -689,23 +664,23 @@
       }
     }
 
-    // Memory Game & Quiz Setup
+    // Memory Game & Quiz Data
     const quizData = [
-      { q: "Panda's favorite place to sleep", a: "buggu's chest" },
-      { q: "The instrument we often talk about 😂", a: "tabla" },
-      { q: "Our proof emoji", a: "😘" },
-      { q: "Our janaury meeting date", a: "7" },
-      { q: "what thing we ate in chatpata", a: "brownie" }
+      { q: "Panda's favorite place to sleep?", a: "buggu's chest" },
+      { q: "The instrument we often talk about?", a: "violin" },
+      { q: "Our proof emoji?", a: "🤝" },
+      { q: "Our January meeting date?", a: "21" },
+      { q: "What thing we ate in cheapata?", a: "brownie" }
     ];
 
     let matchedPairs = 0;
-    let currentQuizIndex = -1;
+    let currentQuizIndex = 0;
     let flippedCards = [];
 
     function initGame() {
       const grid = document.getElementById('cardsGrid');
       grid.innerHTML = '';
-      const icons = ['🐼', '⭐', '🧿', '💖', '🎁'];
+      const icons = ['🌸', '🐼', '⭐', '💖', '🎁'];
       const deck = [...icons, ...icons].sort(() => Math.random() - 0.5);
 
       deck.forEach((icon, index) => {
@@ -765,7 +740,7 @@
       } else {
         alert('Incorrect answer, try again!');
       }
-    
+    }
 
     // Lightbox Image Viewer
     function viewImage(src) {
@@ -773,47 +748,22 @@
       document.getElementById('lightbox').style.display = 'flex';
     }
 
-      <!-- PAGE 5: Music Player -->
-  <section class="page" id="page5">
-    <h2>The song I will sing for you forever 🎶</h2>
-    <div class="player-card">
-      <h3>Die With A Smile - Bruno Mars & Lady Gaga</h3>
-      <br>
-      <!-- Direct MP3 Link for guaranteed mobile playback -->
-      <audio id="audioTrack" src="Song.mp3" preload="auto"></audio>
+    // Music Player Controls
+    const audioTrack = document.getElementById('audioTrack');
+    const playBtn = document.getElementById('playBtn');
 
-      <button class="btn" id="playBtn" onclick="toggleMusic()">▶ Play Song</button>
-
-      <div class="lyrics-box" id="lyricsBox">
-        <p>If the world was ending, I'd want to be next to you...</p>
-        <p>If the party was over and our time on Earth was through...</p>
-        <p>I'd want to hold you just for a while...</p>
-        <p>And die with a smile... 💖</p>
-      </div>
-    </div>
-    <button class="btn" onclick="scrollToPage('page6')">Final Secret Surprise ✉️</button>
-  </section>
-
-  <!-- PAGE 6: Scratch Card -->
-  <section class="page" id="page6">
-    <h2>Scratch the Card to Reveal Your Message 🌸</h2>
-    <div class="scratch-container">
-      <div class="letter-content">
-        <h3>To my precious sister,</h3>
-        <br>
-        <p>Happy Birthday! Distance can never change how close we are. Thank you for all the laughs, inside jokes, and unconditional support. You are truly my favorite person.</p>
-        <br>
-        <p>Always stay happy and shining bright!</p>
-        <br>
-        <p><strong>Forever yours,</strong><br>Buggu</p>
-      </div>
-      <canvas id="scratch-canvas" width="320" height="420"></canvas>
-    </div>
-  </section>
+    function toggleMusic() {
+      if (audioTrack.paused) {
+        audioTrack.play().then(() => {
+          playBtn.textContent = '⏸ Pause Song';
+        }).catch(err => {
+          alert("Please verify 'song.mp3' exists on GitHub!");
+        });
+      } else {
         audioTrack.pause();
         playBtn.textContent = '▶ Play Song';
       }
-    
+    }
 
     audioTrack.addEventListener('ended', () => {
       playBtn.textContent = '▶ Play Song';
@@ -847,7 +797,6 @@
 
     function scratch(e) {
       if (!isScratching) return;
-      e.preventDefault();
       const pos = getScratchPos(e);
       ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
@@ -863,7 +812,6 @@
     canvas.addEventListener('touchend', () => isScratching = false);
     canvas.addEventListener('touchmove', scratch, { passive: false });
 
-    // Draw the scratch coating right away without waiting for window load
     initScratch();
   </script>
 </body>
