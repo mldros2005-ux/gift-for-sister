@@ -773,18 +773,31 @@
       document.getElementById('lightbox').style.display = 'flex';
     }
 
-    // Working Audio Player Toggle
-    const audioTrack = document.getElementById('audioTrack');
-    function toggleMusic() {
-      const btn = document.getElementById('playBtn');
-      if (audioTrack.paused) {
-        audioTrack.play();
-        btn.textContent = '⏸ Pause Song';
-      } else {
-        audioTrack.pause();
-        btn.textContent = '▶ Play Song';
-      }
-    }
+      <!-- PAGE 5: Music Player -->
+  <section class="page" id="page5">
+    <h2>The song I will sing for you forever 🎶</h2>
+    <div class="player-card">
+      <h3>Die With A Smile - Bruno Mars & Lady Gaga</h3>
+      <br>
+      <!-- Option 1: Live Direct Stream -->
+      <!-- Option 2: If uploading your own song to GitHub, replace src with 'song.mp3' -->
+      <audio id="audioTrack" preload="auto">
+        <source src="https://ia801503.us.archive.org/15/items/die-with-a-smile-bruno-mars-lady-gaga/Die%20With%20A%20Smile%20-%20Bruno%20Mars%20%26%20Lady%20Gaga.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <button class="btn" id="playBtn" onclick="toggleMusic()">▶ Play Song</button>
+      
+      <div class="lyrics-box" id="lyricsBox">
+        <p>If the world was ending, I'd want to be next to you...</p>
+        <p>If the party was over and our time on Earth was through...</p>
+        <p>I'd want to hold you just for a while...</p>
+        <p>And die with a smile... 💖</p>
+      </div>
+    </div>
+    <button class="btn" onclick="scrollToPage('page6')">Final Secret Surprise ✉️</button>
+  </section>
+
 
     // Scratch Card Logic
     const canvas = document.getElementById('scratch-canvas');
