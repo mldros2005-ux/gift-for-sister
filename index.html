@@ -765,7 +765,7 @@
       } else {
         alert('Incorrect answer, try again!');
       }
-    }
+    
 
     // Lightbox Image Viewer
     function viewImage(src) {
@@ -810,12 +810,10 @@
       <canvas id="scratch-canvas" width="320" height="420"></canvas>
     </div>
   </section>
-        }
-      } else {
         audioTrack.pause();
         playBtn.textContent = '▶ Play Song';
       }
-    }
+    
 
     audioTrack.addEventListener('ended', () => {
       playBtn.textContent = '▶ Play Song';
