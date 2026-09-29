@@ -810,22 +810,6 @@
       <canvas id="scratch-canvas" width="320" height="420"></canvas>
     </div>
   </section>
-
-  <script>
-    // Audio Player Toggle
-    const audioTrack = document.getElementById('audioTrack');
-    const playBtn = document.getElementById('playBtn');
-
-    function toggleMusic() {
-      if (audioTrack.paused) {
-        let playPromise = audioTrack.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            playBtn.textContent = '⏸ Pause Song';
-          }).catch(err => {
-            console.log("Playback error:", err);
-            alert("Audio file not found or browser blocked playback. Check that your MP3 file name on GitHub matches exactly!");
-          });
         }
       } else {
         audioTrack.pause();
