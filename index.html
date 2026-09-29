@@ -794,6 +794,28 @@
     </div>
     <button class="btn" onclick="scrollToPage('page6')">Final Secret Surprise ✉️</button>
   </section>
+        // Working Audio Player Toggle Fix
+    const audioTrack = document.getElementById('audioTrack');
+    const playBtn = document.getElementById('playBtn');
+
+    function toggleMusic() {
+      if (audioTrack.paused) {
+        audioTrack.play().then(() => {
+          playBtn.textContent = '⏸ Pause Song';
+        }).catch(err => {
+          alert("Click again or interact with the page to allow audio playback.");
+        });
+      } else {
+        audioTrack.pause();
+        playBtn.textContent = '▶ Play Song';
+      }
+    }
+
+    // Reset button text automatically when song ends
+    audioTrack.addEventListener('ended', () => {
+      playBtn.textContent = '▶ Play Song';
+    });
+
     // Scratch Card Logic
     const canvas = document.getElementById('scratch-canvas');
     const ctx = canvas.getContext('2d');
