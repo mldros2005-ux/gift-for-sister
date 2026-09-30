@@ -784,17 +784,29 @@
     const playBtn = document.getElementById('playBtn');
 
     function toggleMusic() {
-      if (audioTrack.paused) {
-        audioTrack.play().then(() => {
-          playBtn.textContent = '⏸ Pause Song';
-        }).catch(err => {
-          alert("Please verify 'song.mp3' exists on GitHub!");
-        });
-      } else {
-        audioTrack.pause();
-        playBtn.textContent = '▶ Play Song';
-      }
+  const audioTrack = document.getElementById('audioTrack');
+  const playBtn = document.getElementById('playBtn');
+
+  if (audioTrack.paused) {
+    audioTrack.load(); // Force browser to fetch the file path directly
+    const playPromise = audioTrack.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        playBtn.textContent = '⏸ Pause Song';
+      }).catch(err => {
+        console.log("Playback failed:", err);
+        // Fallback direct attempt for mobile browsers
+        audioTrack.play();
+        playBtn.textContent = '⏸ Pause Song';
+      });
     }
+  } else {
+    audioTrack.pause();
+    playBtn.textContent = '▶ Play Song';
+  }
+}
+
 
     audioTrack.addEventListener('ended', () => {
       playBtn.textContent = '▶ Play Song';
